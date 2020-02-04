@@ -4,17 +4,40 @@ class Solution:
   def findMedianSortedArrays(self, nums1, nums2):
     """ Given 2 sorted lists find the median value among the values in both lists.
     https://leetcode.com/problems/median-of-two-sorted-arrays/ """
-    result = 0.0
     print("working lists %s and %s" % (str(nums1), str(nums2)))
     if nums1 == []:
       return self.simplemedian(nums2)
     if nums2 == []:
       return self.simplemedian(nums1)
+    ind1, ind2 = 0, 0 # use 2 indices to step through the 2 arrays
 
-    #concatarr = nums1 + nums2
-    #print("concat array is %s" % str(sorted(concatarr)))
+    concatarr = sorted(nums1 + nums2)
+    print("concat array is (%d) %s" % (len(concatarr), str(concatarr)))
+    # brute force implementation:
+    return self.simplemedian(concatarr)
     l1, l2 = len(nums1), len(nums2)
     total = l1 + l2
+    if total % 2 == 0:
+      EVEN = True
+    else:
+      EVEN = False
+    print(" have even %s and total %d" % (str(EVEN), total))
+    while ind1 + ind2 < (total - 1 ) // 2:
+      if nums1[ind1] < nums2[ind2]:
+        ind1 += 1
+        print("advancing ind1 to %d" % ind1)
+      else:
+        ind2 += 1
+        print("advancing ind2 to %d" % ind2)
+      if ind1 >= l1 or ind2 >= l2:
+        return self.simplemedian(nums1 + nums2) # handle where 1 array is completely on 1 side of median
+    if EVEN:
+      print("have even with %d and %d" % (nums1[ind1], nums2[ind2]))
+      return (nums1[ind1] + nums2[ind2]) / 2
+    else:
+      print("have odd with %d and %d" % (nums1[ind1], nums2[ind2]))
+      return min( nums1[ind1], nums2[ind2])
+
     if l1 == 1 or l2 == 1:
       return self.simplemedian(sorted(nums1 + nums2))
     nums1l, nums2l = 0, 0
@@ -59,7 +82,7 @@ def main():
   print("t1 should be 7.5 found result %s " % s.findMedianSortedArrays(sorted(nums1), sorted(nums2)) )
   nums1 = range(20)
   nums2 = range(10,35)
-  print("t2 should be 15.5 found result %s " % s.findMedianSortedArrays(sorted(nums1), sorted(nums2)) )
+  print("t2 should be 16 found result %s " % s.findMedianSortedArrays(sorted(nums1), sorted(nums2)) )
   nums1 = [1,3]
   nums2 = [2]
   print("t3 should be 2 found result %s " % s.findMedianSortedArrays(sorted(nums1), sorted(nums2)) )
@@ -87,6 +110,12 @@ def main():
   nums1 = [1,3]
   nums2 = [2,4,5,6,7,8,9,10,11]
   print("t11 should be 6 found result %s " % s.findMedianSortedArrays(sorted(nums1), sorted(nums2)) )
+  nums1 = [1,11]
+  nums2 = [2,3,4,5,6,7,8,9,10]
+  print("t12 should be 6 found result %s " % s.findMedianSortedArrays(sorted(nums1), sorted(nums2)) )
+  nums1 = [1,12]
+  nums2 = [2,3,4,5,6,7,8,9,10,11]
+  print("t13 should be 6.5 found result %s " % s.findMedianSortedArrays(sorted(nums1), sorted(nums2)) )
 
 
 if __name__ == '__main__':
