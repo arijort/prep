@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+import unittest
 
 class Solution:
   def reverse(self, i):
@@ -20,16 +21,14 @@ class Solution:
     else:
       return int(result)
     
-
-def main():
-  print("starting")
-  ts = Solution()
-  print("test 1 should be 321 : %d" % ts.reverse(123))
-  print("test 2 should be 1 : %d" % ts.reverse(1))
-  print("test 3 should be -987 : %d" % ts.reverse(-789))
-  print("test 4 should be 0 : %d" % ts.reverse(1534236469))
+class Test(unittest.TestCase):
+  def test_reverse(self):
+    print("starting")
+    ts = Solution()
+    print("test 1 should be 321 : %d" % ts.reverse(123))
+    print("test 2 should be 1 : %d" % ts.reverse(1))
+    print("test 3 should be -987 : %d" % ts.reverse(-789))
+    print("test 4 should be 0 : %d" % ts.reverse(1534236469))
 
 if __name__ == '__main__':
-  main()
-
-
+  unittest.main()
