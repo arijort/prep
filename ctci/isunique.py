@@ -18,11 +18,11 @@ class UniqueTest(unittest.TestCase):
   https://github.com/careercup/CtCI-6th-Edition-Python/tree/master/Chapter1 """
   def test_unique(self):
     s1 = 'asdfg'
-    print("testing %s should be true: %s" % (s1, isunique(s1)))
+    self.assertTrue(isunique(s1))
     s2 = 'asdfiouasdfjkasdfg'
-    print("testing %s should be false: %s" % (s1, isunique(s2)))
+    self.assertFalse(isunique(s2))
     s3 = ''
-    print("testing %s should be true: %s" % (s1, isunique(s3)))
+    self.assertTrue(isunique(s3))
 
 if __name__ == '__main__':
   unittest.main()
