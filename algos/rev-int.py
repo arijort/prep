@@ -23,12 +23,11 @@ class Solution:
     
 class Test(unittest.TestCase):
   def test_reverse(self):
-    print("starting")
     ts = Solution()
-    print("test 1 should be 321 : %d" % ts.reverse(123))
-    print("test 2 should be 1 : %d" % ts.reverse(1))
-    print("test 3 should be -987 : %d" % ts.reverse(-789))
-    print("test 4 should be 0 : %d" % ts.reverse(1534236469))
+    self.assertEqual(321, ts.reverse(123))
+    self.assertEqual(1, ts.reverse(1))
+    self.assertEqual(-987, ts.reverse(-789))
+    self.assertEqual(0, ts.reverse(1534236469))
 
 if __name__ == '__main__':
   unittest.main()
