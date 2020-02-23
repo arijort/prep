@@ -20,7 +20,6 @@ explanation:
 B 0 0 0 C 0
 0 0 0 0 C 0
 ```
-
 """
 
 seen = set()
@@ -31,18 +30,18 @@ def findIsland(arr):
             if arr[x][y] == 0:
                 continue
             elif (x,y) in seen:
-                continue    
+                continue
             elif arr[x][y] == 1:
                 # discover entire island connectioned to (x,y)
                 print("marking island at %d %d" % ( x,y))
                 discoverIsland(arr, x, y)
                 result += 1
     return result
-                
+
 def discoverIsland(arr, x, y):
     print("discovering %d %d" % (x,y))
     if (x,y) in seen:
-        return 
+        return
     seen.add( (x,y) )
     if x >= len(arr):
         return
@@ -59,9 +58,7 @@ def discoverIsland(arr, x, y):
         seen.add((x,y+1))
     if y > 0 and arr[x][y-1] == 1:
         discoverIsland(arr, x, y-1)
-        seen.add((x,y-1)) 
-    
-             
+        seen.add((x,y-1))
 
 def main():
   a = [ [0, 0, 1, 0, 0, 0], [0, 0, 1, 1, 0, 0], [0, 0, 0, 1, 0, 0], [1, 0, 0, 0, 1, 0], [0, 0, 0, 0, 1, 0] ]
