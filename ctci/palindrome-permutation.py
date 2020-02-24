@@ -3,7 +3,32 @@ import unittest
 from collections import defaultdict
 
 class Solution():
-  def palinperm(self,s):
+  def palinperm(self,phrase):
+      '''function checks if a string is a permutation of a palindrome or not'''
+      table = [0 for _ in range(ord('z') - ord('a') + 1)]
+      countodd = 0
+      for c in phrase:
+          x = self.char_number(c)
+          if x != -1:
+              table[x] += 1
+              if table[x] % 2:
+                  countodd += 1
+              else:
+                  countodd -= 1
+      return countodd <= 1
+  def char_number(self,c):
+      a = ord('a')
+      z = ord('z')
+      A = ord('A')
+      Z = ord('Z')
+      val = ord(c)
+      if a <= val <= z:
+          return val - a
+      elif A <= val <= Z:
+          return val - A
+      return -1
+
+  def aj_palinperm(self,s):
     """ Given a string, check if the characters can be premuted to form a palindrome. """
     # Check 2 modes: whether string has even or odd number of chars, using case-insensitive logic.
     #   If the string has even number of chars, each char must appear an even number of times; else return false
