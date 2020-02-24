@@ -33,6 +33,7 @@ class Test(unittest.TestCase):
     self.assertTrue(ts.palinperm("ttt"))
     self.assertTrue(ts.palinperm("tttt"))
     self.assertFalse(ts.palinperm("ttta"))
+    self.assertTrue(ts.palinperm("tttat"))
     self.assertTrue(ts.palinperm("tact Coa"))
     self.assertTrue(ts.palinperm("able was i ere i saw elba"))
     self.assertTrue(ts.palinperm("able was i ere i saw elbar"))
