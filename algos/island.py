@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+from pprint import pprint
 """
 Given a map represented as a two-dimensional array of 1’s and 0’s, where 1’s are land and 0’s are water, write a method that determines how many separate islands are contained in the map.
 
@@ -62,6 +63,7 @@ def discoverIsland(arr, x, y):
 
 def main():
   a = [ [0, 0, 1, 0, 0, 0], [0, 0, 1, 1, 0, 0], [0, 0, 0, 1, 0, 0], [1, 0, 0, 0, 1, 0], [0, 0, 0, 0, 1, 0] ]
+  pprint(a)
   c = findIsland(a)
   print("found %d islands " % c)
 
