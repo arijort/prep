@@ -7,16 +7,15 @@ class Solution():
     representing the number consecutive instances of that character.  E.g. aabcccccaaa would be replaced with a2b1c5a3. """
     result = list()
     currentchar = ""
-    currentct = 1
+    currentct = 0
     for n, c in enumerate(s):
       if not currentchar == c:
         if not currentchar == "":
           result.append(str(currentct))
-          currentct = 1
+          currentct = 0
         currentchar = c
         result.append(c)
-      else: #  currentchar == c
-        currentct += 1
+      currentct += 1
     result.append(str(currentct))
     if len(result) > len(s):
       return s
