@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 import unittest
+import cProfile
 
 class Solution():
   def oneaway(self, a, b):
@@ -43,6 +44,19 @@ class Test(unittest.TestCase):
     self.assertTrue(ts.oneaway("pales", "pale"))
     self.assertTrue(ts.oneaway("pale", "bale"))
     self.assertFalse(ts.oneaway("pale", "bake"))
+    self.assertFalse(ts.oneaway("pale", "ble"))
+    self.assertTrue(ts.oneaway("paleabc", "pleabc"))
+    self.assertTrue(ts.oneaway("", "d"))
+    self.assertTrue(ts.oneaway("d", "de"))
+    self.assertTrue(ts.oneaway("ple", "pale"))
+    self.assertFalse(ts.oneaway("pale", "pse"))
+    self.assertTrue(ts.oneaway("ples", "pales"))
+    self.assertFalse(ts.oneaway("pas", "pale"))
+    self.assertTrue(ts.oneaway("pale", "pkle"))
+    self.assertFalse(ts.oneaway("pkle", "pable"))
+    self.assertFalse(ts.oneaway("pal", "palks"))
+    self.assertFalse(ts.oneaway("palks", "pal"))
 
 if __name__ == '__main__':
   unittest.main()
+  #cProfile.run('unittest.main()')
