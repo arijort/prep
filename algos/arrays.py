@@ -2,6 +2,7 @@
 
 class Solution():
   def twoSum(self,intarr, target):
+    """ Given an array of integers, return a list of pairs which sum to given target. """
     badresult = [-1,-1]
     if not isinstance(intarr, list):
       return badresult
@@ -14,11 +15,11 @@ class Solution():
     sortedarr = intarr.copy()
     sortedarr.sort() 
 
-    v = self.findfirst(sortedarr, target)
+    v = self.findfirst(sortedarr, target, 0, l - 1)
     if v == -1:
       return badresult
-    else:
-      return [intarr.index(v), intarr.index(target - v)]
+    #else:
+    #  return [intarr.index(v), intarr.index(target - v)]
     
     for i in range(l):
       if not isinstance(intarr[i], int):
