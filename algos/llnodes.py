@@ -65,7 +65,6 @@ class LinkedListNode():
       n = n.next
       runner += 1
     n.next = n.next.next
-    self.display()
 
     return head
 
