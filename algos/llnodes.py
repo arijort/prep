@@ -77,6 +77,23 @@ class LinkedListNode():
     self.next = self.next.next
     return True
 
+  def partition(self, v):
+    """ Given a linked list node and a value, partition the list such that nodes less than the value appear to the left of all nodes greater than or equal to the value.
+        Values within the two partitions do not need to be sorted. """
+    runner, head = self, self
+    while not runner.next == None:
+      if runner == head: # head node can safely stay in place, start from second node
+        runner = runner.next
+        continue
+      if runner.next.s < v: # compare next to value
+        tmp = runner.next # delicate surgery
+        runner.next = runner.next.next
+        tmp.next = head
+        head = tmp
+      else:
+        runner = runner.next
+    return head
+
 
 class Test(unittest.TestCase):
   def test_llnodes(self):
@@ -105,6 +122,10 @@ class Test(unittest.TestCase):
     quz.remove_this()
     arr = llnode.mk_list()
     self.assertEqual(arr, ['a', 'b', 'zxy', 'z', 'foo', 'bar', 'b', 'c', 'qux', 'zoqpp']) # test removeing from the middle
+
+    llnode = llnode.partition("p") # partitioning creates a new head
+    arr = llnode.mk_list()
+    self.assertEqual(arr, ['c', 'b', 'bar', 'foo', 'a', 'b', 'zxy', 'z', 'qux', 'zoqpp'] ) # test removeing from the middle
 
 if __name__ == '__main__':
   unittest.main()
