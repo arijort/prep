@@ -45,8 +45,6 @@ class LinkedListNode():
     """ Given an unsorted singly linked list remove any duplicate nodes. As a secondary: can it be done without any additional data structure. """
     st = set()
     n,head = self,self
-    print("before dedupe")
-    head.display()
     st.add(n.s)
     while not n.next == None:
       if n.next.s in st:
@@ -61,11 +59,9 @@ class LinkedListNode():
     while not n.next == None:
       ct += 1
       n = n.next
-    print(f"found length {ct} will remove node {ct - k}")
     runner = 0
     n = head # reinitialize node pointer
     while runner < ct - k - 1:
-      print(f"runner {runner}")
       n = n.next
       runner += 1
     n.next = n.next.next
@@ -75,6 +71,11 @@ class LinkedListNode():
 
   def remove_this(self):
     """ Given pointer to a node in the middle of linked list, remove the current node keeping the rest of the list intact. """
+    if self.next == None:
+      return False # In this case we are actually at the end of the list so do nothing.
+    self.s = self.next.s
+    self.next = self.next.next
+    return True
 
 
 class Test(unittest.TestCase):
