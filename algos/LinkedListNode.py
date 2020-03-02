@@ -9,6 +9,23 @@ class LinkedListNode():
   def __init__(self, string):
     self.s = string
 
+  def loop_detect(self):
+    n = self
+    st = set()
+    while not n == None:
+      if n in st:
+        return n
+      st.add(n)
+      n = n.next
+    return None
+
+  def appendNode(self,n):
+    """ Given a LinkedListNode object append this code to the tail of this linked list. """
+    runner = self
+    while not runner.next == None:
+      runner = runner.next
+    runner.next = n
+
   def mk_list(self):
     """ Return a list of values in the linked list from the current node to the end. """
     l, n = list(), self
