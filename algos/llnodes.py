@@ -93,6 +93,21 @@ class LinkedListNode():
         runner = runner.next
     return head
 
+  def valuefromLN(self):
+    """ Treat this linked list node as an integer whose digits are represented in the nodes. Return the value of this integer. """
+    n = self
+    result, power = 0,0
+    while not n == None:
+      result += int(n.s) * (10 ** power)
+      power += 1
+      n = n.next
+    return result
+
+  def addTo(self, num):
+    """ Treat this linked list node and the given node in num as integer whose digits are represented by the linked list. The ones columned is indicated by the head node. """
+    thisval = self.valuefromLN()
+    thatval = num.valuefromLN()
+    return thisval + thatval
 
 class Test(unittest.TestCase):
   def test_llnodes(self):
@@ -125,6 +140,34 @@ class Test(unittest.TestCase):
     llnode = llnode.partition("p") # partitioning creates a new head
     arr = llnode.mk_list()
     self.assertEqual(arr, ['c', 'b', 'bar', 'foo', 'a', 'b', 'zxy', 'z', 'qux', 'zoqpp'] ) # test removeing from the middle
+
+    # Create 2 numbers using linked list nodes for digits.  Head is the least-significant column (ones)
+    num1 = LinkedListNode("7") # create 617
+    num1.appendToTail("1")
+    num1.appendToTail("6")
+    self.assertEqual(num1.valuefromLN(), 617)
+
+    num2 = LinkedListNode("5") # create 295
+    num2.appendToTail("9")
+    num2.appendToTail("2")
+    self.assertEqual(num2.valuefromLN(), 295)
+
+    result = num1.addTo(num2) # treat as integers
+    self.assertEqual(num1.addTo(num2), 912)
+
+    intnodes = self.intToLN(result)
+    arr = intnodes.mk_list()
+    self.assertEqual(arr, ['2', '1', '9'])
+
+  def intToLN(self, i):
+    if i == 0:
+      return None
+    l = str(i)
+    p = LinkedListNode(l[-1]) # pull out ones column
+    for n in l[-2::-1]: # work from 2nd column to the end
+      p.appendToTail(n)
+    return p
+
 
 if __name__ == '__main__':
   unittest.main()
