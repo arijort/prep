@@ -109,6 +109,15 @@ class LinkedListNode():
     thatval = num.valuefromLN()
     return thisval + thatval
 
+  def isPalin(self):
+    """ Return whether the set of strings represented in the given linked list is a palindrome. """
+    s = self.mk_list()
+    n = self
+    for i in range(len(s) // 2): # floor of half length
+      if not s[i] == s[~i]: # use 2's complement to compare successive elements from head and tail
+        return False
+    return True
+
 class Test(unittest.TestCase):
   def test_llnodes(self):
     llnode = LinkedListNode("a")
@@ -118,7 +127,6 @@ class Test(unittest.TestCase):
     z = llnode.appendToTail("z")
     bar = llnode.appendToTail("bar")
     foo = llnode.appendToTail("foo")
-
 
     llnode.remove_dupes()
     arr = llnode.mk_list()
@@ -158,6 +166,15 @@ class Test(unittest.TestCase):
     intnodes = self.intToLN(result)
     arr = intnodes.mk_list()
     self.assertEqual(arr, ['2', '1', '9'])
+
+    palin = LinkedListNode("a")
+    b = palin.appendToTail("b")
+    b = palin.appendToTail("b")
+    a = palin.appendToTail("a")
+    self.assertTrue(palin.isPalin())
+    a = palin.appendToTail("c")
+    self.assertFalse(palin.isPalin())
+
 
   def intToLN(self, i):
     if i == 0:
