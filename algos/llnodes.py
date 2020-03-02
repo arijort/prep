@@ -65,6 +65,18 @@ class Test(unittest.TestCase):
     intersection = palin.isIntersection(llnode)
     self.assertEqual(intersection, None)
 
+    # loop detection
+    loophead = LinkedListNode("a")
+    b = loophead.appendToTail("b")
+    c = loophead.appendToTail("c")
+    d = loophead.appendToTail("d")
+    e = loophead.appendToTail("e")
+    e = loophead.appendNode(c)
+    result = loophead.loop_detect()
+    self.assertEqual(result.s, "c")
+    result = llnode.loop_detect()
+    self.assertEqual(result, None)
+
   def intToLN(self, i):
     if i == 0:
       return None
