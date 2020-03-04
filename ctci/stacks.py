@@ -1,27 +1,25 @@
 #!/usr/bin/env python
 import unittest
-import heapq
-import sys
-from pprint import pprint
+#from pprint import pprint
 
 class Stack():
-  """ Python implementation of a stack: push onto stack, pop from stack, peek into Stack.  Depends on private class StackNode. """
+  """ Python implementation of a stack: push onto stack, pop from stack, peek into Stack.
+    Depends on private class StackNode. """
   def __init__(self):
     self.head = None
     self.minnode = None
-    return
 
   def popmin(self):
     return self.minnode
 
   def findmin(self):
     runner = self.head
-    while runner != None:
-      if runner.data < self.min:
+    while runner is not None:
+      if runner.data < self.minnode:
         self.minval = runner.data
 
   def pop(self):
-    if self.head == None:
+    if self.head is None:
       return None
     node = self.head
     self.head = self.head.next
@@ -44,20 +42,20 @@ class Stack():
     return self.head.data
 
   def display(self):
-    n = self.head
-    while not n == None:
-      print(n.data)
-      n = n.next
+    runner = self.head
+    while not runner is None:
+      print(runner.data)
+      runner = runner.next
 
   def mklist(self):
-    n = self.head
-    l = []
-    while not n == None:
-      l.append(n.data)
-      n = n.next
-    return l
+    runner = self.head
+    lst = []
+    while runner is not None:
+      lst.append(runner.data)
+      runner = runner.next
+    return lst
 
-  def isEmpty(self):
+  def is_empty(self):
     return self.head == None
 
 class StackNode():
@@ -82,16 +80,16 @@ class Test(unittest.TestCase):
     stk.push("b")
     stk.push("c")
     arr = stk.mklist()
-    self.assertEqual(arr, [ 'c','b','a'])
+    self.assertEqual(arr, ['c', 'b', 'a'])
     c = stk.peek()
     self.assertEqual(c, 'c')
     c = stk.pop()
     arr = stk.mklist()
-    self.assertEqual(arr, ['b','a'])
-    b = stk.pop()
+    self.assertEqual(arr, ['b', 'a'])
+    stk.pop()
     arr = stk.mklist()
     self.assertEqual(arr, ['a'])
-    self.assertFalse(stk.isEmpty())
+    self.assertFalse(stk.is_empty())
 
     istk = Stack()
     istk.push(100)
@@ -99,12 +97,12 @@ class Test(unittest.TestCase):
     istk.push(50)
     istk.push(20)
     arr = istk.mklist()
-    self.assertEqual(arr, [20,50,10,100])
-    m = istk.popmin()
-    self.assertEqual(m.data, 10)
+    self.assertEqual(arr, [20, 50, 10, 100])
+    themin = istk.popmin()
+    self.assertEqual(themin.data, 10)
     istk.push(-40)
-    m = istk.popmin()
-    self.assertEqual(m.data, -40)
+    themin = istk.popmin()
+    self.assertEqual(themin.data, -40)
 
 if __name__ == '__main__':
   unittest.main()
