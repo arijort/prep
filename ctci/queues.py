@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import unittest
-from pprint import pprint
+#from pprint import pprint
 
 class Queue():
   """ Python implementation of a Queue: put onto queue at tail, get from queue at head, peek into Queue.
@@ -28,8 +28,6 @@ class Queue():
     self.depth += 1
     if self.head is None:
       self.head = node
-    print(f"putting node onto queue {node.data}")
-    print(f"queue head {self.head.data} tail: {self.tail.data}")
     return
 
   def peek(self):
@@ -38,17 +36,14 @@ class Queue():
   def display(self):
     runner = self.head
     while not runner is None:
-      print(runner.data)
       runner = runner.next
 
   def mklist(self):
     runner = self.head
     lst = []
     while runner is not None:
-      print(f"Running with node {runner.data}")
       lst.append(runner.data)
       runner = runner.next
-      print(f"have list {lst}")
     return lst
 
   def is_empty(self):
