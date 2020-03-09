@@ -54,6 +54,7 @@ class Stack():
   def __init__(self):
     self.head = None
     self.minnode = None
+    self.depth = 0
 
   def popmin(self):
     return self.minnode
@@ -61,8 +62,9 @@ class Stack():
   def findmin(self):
     runner = self.head
     while runner is not None:
-      if runner.data < self.minnode:
-        self.minval = runner.data
+      if runner < self.minnode:
+        self.minnode = runner
+      runner = runner.next
 
   def pop(self):
     if self.head is None:
@@ -71,6 +73,7 @@ class Stack():
     self.head = self.head.next
     if node == self.minnode:
       self.findmin()
+    self.depth -= 1
     return node
 
   def push(self, data):
@@ -82,6 +85,7 @@ class Stack():
       return
     if node < self.minnode:
       self.minnode = node
+    self.depth += 1
     return
 
   def peek(self):
