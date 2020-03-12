@@ -4,11 +4,10 @@ import unittest
 class Solution:
   def reverse(self, i):
     """ Given an integer, return the integer with digits in reverse order.  E.g. 123 -> 321.  Negatives should be preserved as negatives.  """
-    result = 0
+    result, neg = 0, 1
     maxint,minint = 2**31, -2**31 - 1
-    neg = False
     if i < 0:
-      neg = True
+      neg = -1
       i = abs(i)
     while i > 0:
       result *= 10
@@ -16,11 +15,8 @@ class Solution:
       i //= 10
     if result > maxint or result < minint:
       return 0
-    if neg:
-     return -int(result)
-    else:
-      return int(result)
-    
+    return neg * int(result)
+
 class Test(unittest.TestCase):
   def test_reverse(self):
     ts = Solution()
@@ -28,6 +24,7 @@ class Test(unittest.TestCase):
     self.assertEqual(1, ts.reverse(1))
     self.assertEqual(-987, ts.reverse(-789))
     self.assertEqual(0, ts.reverse(1534236469))
+    self.assertEqual(0, ts.reverse(7474389248423879423887136781361326781326312768))
 
 if __name__ == '__main__':
   unittest.main()
