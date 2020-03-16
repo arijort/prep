@@ -4,22 +4,16 @@ import unittest
 class Solution():
   def licenseKeyFormatting(self, S: str, K: int) -> str:
     buf,result = [], []
-    S = S.replace("-", "")
-    for char in S.upper():
-      if char.isalnum():
-        buf.append(char)
-    if len(S) == 0:
-      return ""
-    leftover = len(buf) % K
-    if leftover == 0:
-      leftover = K
+    S = S.upper().replace("-", "")
+    leftover = len(S) % K
+    if leftover:
+      result.append( S[:leftover] )
     print(f"leftover is {leftover}")
-    if leftover == len(buf):
-      return "".join(buf[0:leftover])
-    result = buf[0:leftover]
-    buf = buf[leftover:]
-    remnants = [ "".join(buf[i*K: (i+1) * K]) for i in range(len(buf) // K) ]
-    return "".join(result) + "-" + "-".join(remnants)
+    if leftover == len(S):
+      return "".join(S[0:leftover])
+    [ result.append(S[i:i+K]) for i in range(leftover, len(S), K) ]
+    print(f"result is {result}")
+    return "-".join(result)
 
 class Test(unittest.TestCase):
   def test_foo(self):
