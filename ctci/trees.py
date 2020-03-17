@@ -24,7 +24,9 @@ class BinarySearchTreeNode(TreeNode):
     self.value = v
 
   def add_child(self, v):
-    if v < self.value: # go left
+    if self.value is None:
+      self.value = v
+    elif v < self.value: # go left
       if self.left == None:
         self.left = BinarySearchTreeNode(v)
       else:
@@ -51,20 +53,27 @@ class BinarySearchTreeNode(TreeNode):
     self.visit(l)
     if self.right != None:
       self.right.do_in_order_traversal(l)
+    return l
 
   def do_pre_order_traversal(self,l):
+    if not l:
+      l = []
     self.visit(l)
     if self.left != None:
       self.left.do_pre_order_traversal(l)
     if self.right != None:
       self.right.do_pre_order_traversal(l)
+    return l
 
   def do_post_order_traversal(self,l):
+    if not l:
+      l = []
     if self.left != None:
       self.left.do_post_order_traversal(l)
     if self.right != None:
       self.right.do_post_order_traversal(l)
     self.visit(l)
+    return l
 
   def do_traversals(self):
     iotl,preotl,postotl= [], [], []
@@ -88,7 +97,8 @@ class BinarySearchTreeNode(TreeNode):
     return self.construct_binary_search_tree_util(l)
 
   def construct_binary_search_tree_util(self,l):
-    """ Given a list of sorted integers, use the list as an in-order traversal of a tree and reconstruct the minimal height tree. """
+    """ Given a list of sorted integers, use the list as an in-order traversal of a tree and reconstruct the minimal height tree.
+    This is done by recursively finding the optimal rootnode, splitting the elements into left and right halves and creating a BST from each. """
     ##print(f"working list len {len(l)} {l}")
     if len(l) == 0:
       return None
@@ -100,9 +110,11 @@ class BinarySearchTreeNode(TreeNode):
       rootidx = int(2 ** (height - 1)) - 1
     else: # left half of bottom row is not full
       rootidx = int(2 ** (height - 2)) + num_leafs_in_bottom -1
+    #rootidx = max( int(2 ** (height - 1)) - 1, int(2 ** (height - 2)) + num_leafs_in_bottom -1 )
     #print(f"  start from node {l[rootidx]}")
     rootnode = BinarySearchTreeNode(l[rootidx])
 
+    # for all non-leaf nodes, construct the left and right pointers
     if height > 1:
       lefttree = self.construct_binary_search_tree(l[0:rootidx])
       righttree = self.construct_binary_search_tree(l[rootidx+1:])
@@ -115,7 +127,6 @@ class Tree():
   """ Tree class likely won't be used but this is a stub for it. """
   def __init__(self):
     self.root = TreeNode()
-
 class Test(unittest.TestCase):
   def test_trees(self):
     ts = BinarySearchTreeNode(5)
@@ -137,7 +148,22 @@ class Test(unittest.TestCase):
     bst4 = tree.construct_binary_search_tree(list(range(4)))
     bst4.do_traversals()
 
-    pass
+    bst100 = tree.construct_binary_search_tree(list(range(100)))
+    bst100preot = bst100.do_pre_order_traversal([])
+    bst100iot =   bst100.do_in_order_traversal([])
+    print(f"bst100 pre-order is {bst100preot}")
+    self.assertEqual( bst100iot, list(range(100)) )
+    newbst100 = BinarySearchTreeNode()
+    # test that recreating a tree via insert-only using a pre order traversal will create the same tree
+    [ newbst100.add_child(i) for i in bst100preot ]
+    new100 = newbst100.do_pre_order_traversal([])
+    self.assertEqual( bst100preot, new100)
+
+    """ Interesting points to note:
+      * adding a stream of integers to a tree rooted at the initial integer will likely give a badly balanced tree
+      * take a sorted list of integers and derive a minimal complete tree by choosing the right root node in construct_binary_search_tree()
+      * the pre-order traversal can be used to reconstitue a tree smiply by adding thoe integers back into the tree.
+    """
 
 if __name__ == '__main__':
   unittest.main()
