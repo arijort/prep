@@ -5,7 +5,6 @@ sys.path.append("/Users/arijort/py/prep/algos")
 from trees import BinarySearchTreeNode
 from LinkedListNode import LinkedListNode
 
-
 class Solution():
   """ Given a tree in node, create a list of Linked List structures, on for each depth in the tree. """
   def list_of_depths(self,node):
@@ -48,6 +47,24 @@ class Test(unittest.TestCase):
     bad_tree.do_traversals()
     bad_lod = ts.list_of_depths(bad_tree)
     self.assertEqual(len(bad_lod), 76) # test that this tree is pathological, i.e. it has a depth of 76 for 76 nodes.
+
+  def test_balanced(self):
+    """ Create a tree and verify it is "complete" meaning depth any node differs by no more than one. """
+    ts = Solution()
+    tree_factory = BinarySearchTreeNode()
+    balanced_tree = tree_factory.construct_binary_search_tree(list(range(100)))
+    # should have a depth of int(log(n,2)) + 1 i.e. 7 when n=100 
+    self.assertTrue(balanced_tree.is_balanced())
+    self.assertEqual(tree_factory.check_max_depth(balanced_tree,1), 7)
+    self.assertEqual(tree_factory.check_min_depth(balanced_tree,1), 6)
+
+    # creating an unbalanced tree
+    bad_tree = BinarySearchTreeNode()
+    [ bad_tree.add_child(i) for i in range(76) ]
+    self.assertFalse(bad_tree.is_balanced())
+    rev_tree = BinarySearchTreeNode()
+    [ rev_tree.add_child(i) for i in reversed(range(76)) ]
+    self.assertTrue(bad_tree.validate_bst())
 
 if __name__ == '__main__':
   unittest.main()

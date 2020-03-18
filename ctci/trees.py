@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 import unittest
+import sys
 from math import ceil,log
 
 class TreeNode():
@@ -122,6 +123,52 @@ class BinarySearchTreeNode(TreeNode):
       rootnode.right = righttree
 
     return rootnode
+
+  def check_min_depth(self, node, depth):
+    """ Given a node, find the maximum depth from that node down to a leaf node. """
+    if node.left is None or node.right is None:
+      return depth
+    return min( self.check_min_depth(node.left, depth + 1), self.check_min_depth(node.right, depth + 1))
+
+  def check_max_depth(self, node, depth):
+    """ Given a node, find the maximum depth from that node down to a leaf node. """
+    max_left, max_right = 0,0
+    if node.left is not None:
+      max_left = self.check_max_depth(node.left, depth + 1)
+    if node.right is not None:
+      max_right = self.check_max_depth(node.right, depth + 1)
+    return max(depth, max_left, max_right)
+
+  def check_depth_for_balance(self, node):
+    if node is None:
+      return -1
+    minint = - sys.maxsize - 1
+    ld = self.check_depth_for_balance(node.left)
+    if ld == minint:
+      return minint
+    rd = self.check_depth_for_balance(node.right)
+    if rd == minint:
+      return minint
+    if abs(ld - rd) > 1:
+      return - sys.maxsize - 1
+    return max(ld , rd) + 1
+
+  def is_balanced(self):
+    """ Check whether this tree is balanced, i.e. the depth of each leaf node differs by no more than one. """
+    return self.check_depth_for_balance(self) != - sys.maxsize - 1
+
+  def validate_bst(self):
+    """ validate if the current tree is in fact a binar search tree. """
+    return self.validate_bst_util(self, - sys.maxsize -1, sys.maxsize)
+
+  def validate_bst_util(self, node, rangemin, rangemax):
+    if node is None:
+      return True
+    if node.value < rangemin or node.value > rangemax:
+      return False
+    left_check  = self.validate_bst_util(node.left, rangemin, node.value)
+    right_check = self.validate_bst_util(node.right, node.value, rangemax)
+    return left_check and right_check
 
 class Tree():
   """ Tree class likely won't be used but this is a stub for it. """
