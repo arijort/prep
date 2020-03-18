@@ -41,6 +41,9 @@ class Test(unittest.TestCase):
     bst76 = tree.construct_binary_search_tree(list(range(76)))
     bst76.do_traversals()
     ts.list_of_depths(bst76)
+    somenode = bst76.left.right.left.right
+    self.assertEqual(somenode.value, 34)
+    self.assertEqual(somenode.get_successor(), 35)
 
     bad_tree = BinarySearchTreeNode()
     [ bad_tree.add_child(i) for i in range(76) ]

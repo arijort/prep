@@ -8,6 +8,7 @@ class TreeNode():
   def __init__(self,v):
     self.children = []
     self.value = v
+    self.parent = None
 
   def visit(self, l):
     #print(self.value)
@@ -30,11 +31,13 @@ class BinarySearchTreeNode(TreeNode):
     elif v < self.value: # go left
       if self.left == None:
         self.left = BinarySearchTreeNode(v)
+        self.left.parent = self
       else:
         self.left.add_child(v)
     else: # go right
       if self.right == None:
         self.right = BinarySearchTreeNode(v)
+        self.right.parent = self
       else:
         self.right.add_child(v)
 
@@ -99,6 +102,7 @@ class BinarySearchTreeNode(TreeNode):
 
   def construct_binary_search_tree_util(self,l):
     """ Given a list of sorted integers, use the list as an in-order traversal of a tree and reconstruct the minimal height tree.
+    The bottom row of leaf nodes will be as left as possible.  Thus the left half and right half will not necessarily be equally sized.
     This is done by recursively finding the optimal rootnode, splitting the elements into left and right halves and creating a BST from each. """
     ##print(f"working list len {len(l)} {l}")
     if len(l) == 0:
@@ -112,7 +116,6 @@ class BinarySearchTreeNode(TreeNode):
     else: # left half of bottom row is not full
       rootidx = int(2 ** (height - 2)) + num_leafs_in_bottom -1
     #rootidx = max( int(2 ** (height - 1)) - 1, int(2 ** (height - 2)) + num_leafs_in_bottom -1 )
-    #print(f"  start from node {l[rootidx]}")
     rootnode = BinarySearchTreeNode(l[rootidx])
 
     # for all non-leaf nodes, construct the left and right pointers
@@ -121,7 +124,10 @@ class BinarySearchTreeNode(TreeNode):
       righttree = self.construct_binary_search_tree(l[rootidx+1:])
       rootnode.left = lefttree
       rootnode.right = righttree
-
+      if lefttree is not None:
+        lefttree.parent = rootnode
+      if righttree is not None:
+        righttree.parent = rootnode
     return rootnode
 
   def check_min_depth(self, node, depth):
@@ -169,6 +175,26 @@ class BinarySearchTreeNode(TreeNode):
     left_check  = self.validate_bst_util(node.left, rangemin, node.value)
     right_check = self.validate_bst_util(node.right, node.value, rangemax)
     return left_check and right_check
+
+  def get_successor(self):
+    """ Find the successor node of the current node by traversing the tree.
+    Successor is the derived in potentially 2 ways:
+      If the node has a right child, the successor will be at the end of the chain of left links following that right child.
+      If the node has no right child, the successor is the ancestor node which is the left child of its parent. """
+    if self.right is not None: # need to go down the tree
+      runner = self.right
+      while runner:
+        if runner.left is None:
+          result = runner.value
+        runner = runner.left
+    else: # need to go up the tree
+      prunner, nrunner = self.parent, self
+      while prunner:
+        if prunner.left == nrunner:
+          result = nrunner
+          break
+        break
+    return result
 
 class Tree():
   """ Tree class likely won't be used but this is a stub for it. """
