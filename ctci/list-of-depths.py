@@ -58,6 +58,7 @@ class Test(unittest.TestCase):
     balanced_tree = tree_factory.construct_binary_search_tree(list(range(100)))
     # should have a depth of int(log(n,2)) + 1 i.e. 7 when n=100 
     self.assertTrue(balanced_tree.is_balanced())
+    self.assertTrue(tree_factory.is_balanced_dfs_iter(balanced_tree))
     self.assertEqual(tree_factory.check_max_depth(balanced_tree,1), 7)
     self.assertEqual(tree_factory.check_min_depth(balanced_tree,1), 6)
 
@@ -65,6 +66,7 @@ class Test(unittest.TestCase):
     bad_tree = BinarySearchTreeNode()
     [ bad_tree.add_child(i) for i in range(76) ]
     self.assertFalse(bad_tree.is_balanced())
+    self.assertFalse(tree_factory.is_balanced_dfs_iter(bad_tree))
     rev_tree = BinarySearchTreeNode()
     [ rev_tree.add_child(i) for i in reversed(range(76)) ]
     self.assertTrue(bad_tree.validate_bst())
