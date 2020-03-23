@@ -159,6 +159,36 @@ class BinarySearchTreeNode(TreeNode):
       return - sys.maxsize - 1
     return max(ld , rd) + 1
 
+  def is_balanced_dfs_iter(self,tree_root):
+    """ check whether this tree is balanced using an iterative approach and DFS. """
+    if not tree_root:
+      return False
+    if not tree_root.left or not tree_root.right:
+      return False
+    # Keep a list of known depths.  Short circuit to return false if this grows to > 2
+    depths = []
+    # Keep a stack of nodes to check: each node is a tuple of tree-node and depth
+    nodes = []
+    nodes.append( (tree_root, 0) )
+
+    while len(nodes):
+      node, depth = nodes.pop()
+      # if a leaf node: check depth
+      if not node.left and not node.right:
+        if depth not in depths:
+          depths.append(depth)
+          if len(depths) > 2 or (len(depths) == 2 and abs(depths[0] - depths[1]) > 1):
+            return False
+      # if not a leaf node: pop left and right onto stack
+      else:
+        if node.left:
+          nodes.append( (node.left, depth + 1))
+        if node.right:
+          nodes.append( (node.right, depth + 1))
+    return True
+
+
+
   def is_balanced(self):
     """ Check whether this tree is balanced, i.e. the depth of each leaf node differs by no more than one. """
     return self.check_depth_for_balance(self) != - sys.maxsize - 1
