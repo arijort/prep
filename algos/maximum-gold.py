@@ -12,21 +12,35 @@ class Solution():
   def getMaximumGold(self, g: List[List[int]]) -> int:
     for i in range(len(g)):
       pp(g[i])
-    return max(self.dfs(i, j, g, set()) for i in range(len(g)) for j in range(len(g[0])))
+    all_values = [self.dfs(i, j, g, set()) for i in range(len(g)) for j in range(len(g[0]))]
+    pp(all_values)
+    values = [ t[0] for t in all_values ]
+    return max(values)
     
   def dfs(self, i, j, g, visited):
-    print(f"doing dfs at {i}, {j} and visited {visited}")
+    #print(f"doing dfs at {i}, {j} and visited {visited}")
     if not (0 <= i < len(g) and 0 <= j < len(g[0]) and g[i][j] != 0 and (i,j) not in visited):
-      print(f"  bad square")
-      return -math.inf
-    print(f"val {g[i][j]}")
-    pp(g)
+      #print(f"  bad square")
+      return (-math.inf, [-math.inf] )
+    #print(f"val {g[i][j]}")
+    #pp(g)
     visited.add((i, j))
-    res = g[i][j] + max(0, max(self.dfs(i+x, j+y, g, visited) for x,y in [[-1, 0], [1, 0], [0, 1], [0, -1]]))
-    print(f"  have tentative result {res}")
+    node_list = [g[i][j]]
+    candidate_values = [ self.dfs(i+x, j+y, g, visited) for x,y in [[-1, 0], [1, 0], [0, 1], [0, -1]]]
+    pp(candidate_values)
+    #values = [ t[0] for t in candidate_values ]
+    max_value = 0
+    for candidate in candidate_values:
+      max_cand = candidate[0]
+      values = candidate[1]
+      if max_cand > max_value:
+        max_value = max_cand
+        [ node_list.append(i) for i in values]
+    res = g[i][j] + max(0, max_value)
+    #print(f"  have tentative result {res}")
     visited.remove((i, j))
-    print(f"  return {res}")
-    return res
+    print(f"node_list {node_list}")
+    return (res, node_list)
 
 class Test(unittest.TestCase):
   def test_foo(self):
