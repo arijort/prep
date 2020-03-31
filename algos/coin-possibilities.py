@@ -18,6 +18,7 @@ class Solution():
         print(f"    adding {ways_to_do_n_amount[higher_amount_remainder]}")
         ways_to_do_n_amount[higher_amount] += ways_to_do_n_amount[higher_amount_remainder]
         print(f"    ways_to_do_n_amount [ {higher_amount} ] is now {ways_to_do_n_amount[higher_amount]}")
+        print(ways_to_do_n_amount)
     print(f"result for amount {amount} is {ways_to_do_n_amount[amount]} ")
     print(f"full list {ways_to_do_n_amount}")
     return ways_to_do_n_amount[amount]
