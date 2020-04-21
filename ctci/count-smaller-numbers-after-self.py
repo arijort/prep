@@ -45,13 +45,13 @@ class Solution:
         print(f"root val {root.val}, val {val}, root.count {root.count}")
         root.count +=1
         if root.val >= val:
-            print(f"root val ge val")
+            print(f"  val smaller, going left")
             if root.left :
                 self.inset( root.left, val)
             else:
                 root.left = Node(val)
         else:
-            print(f"root val lt val")
+            print(f"val bigger")
             self.count += 1
             if root.left:
                 self.count += root.left.count 
@@ -75,8 +75,8 @@ class Solution:
             self.count = 0
             print(ele)
             self.inset( self.root, ele)
+            print(f"  for elem {ele} appending {self.count}")
             output.append(self.count)
-            # print( )
             
         return output[::-1]
 
