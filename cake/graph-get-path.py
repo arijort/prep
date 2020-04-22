@@ -4,48 +4,37 @@ import unittest
 from collections import deque
 
 def get_path(graph, start_node, end_node):
-
     # Find the shortest route in the network between the two users
-
-    # 1 create queue
     if not start_node in graph or not end_node in graph:
         raise Exception
+    paths = bfs(graph, start_node, end_node)
+    if paths:
+        return reconstruct_path(paths, end_node)
+    else:
+        return None
 
-    q = deque()
-    q.append(start_node)
-    return bfs(graph, start_node, end_node)
-
-def reconstruct_path(path_dict):
-    print(f"dict of paths {path_dict}")
+def reconstruct_path(path_dict, end_node):
+    result = []
+    runner = end_node
+    while runner:
+        result.append(runner)
+        runner = path_dict[runner]
+    return result[::-1]
 
 def bfs(graph, start_node, end_node ):
     """ bfs implementation that returns node on the path to the target.  If it revisits a node, return None. """
     q = deque()
     q.append(start_node)
     path_to = { start_node: None}
-    found = False
     while len(q) > 0:
         node = q.popleft()
         if node == end_node:
-            found = True
-            break
+            return path_to
         for neighbor in graph[node]:
-           if neighbor not in path_to:
+           if neighbor not in path_to: # use path to in lieu of visited set
                q.append(neighbor)
                path_to[neighbor] = node
-
-    if not found:
-        return None
-    runner = end_node
-    result = []
-    print(path_to)
-    while runner:
-        print(f"handling runner {runner} have path to {path_to[runner]}")
-        result.append(runner)
-        runner = path_to[runner]
-    print(f"returning f{result}")
-    return result[::-1]
-# Tests
+    return None # path does not exist
 
 class Test(unittest.TestCase):
 
@@ -102,6 +91,5 @@ class Test(unittest.TestCase):
     def test_end_node_not_present(self):
         with self.assertRaises(Exception):
             get_path(self.graph, 'a', 'h')
-
 
 unittest.main(verbosity=2)
