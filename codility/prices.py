@@ -7,48 +7,44 @@ def solution(prices, buyIndicator, sellIndicator):
   return positions
 
 def do_match_signals(prices, indicators, positions, direction):
+  stop_point = len(prices) - len(indicators)
   for i, price in enumerate(prices):
-    sig_match = False
+    sig_match = -1
     print(f"checking idx {i} price {price}")
-    stop_point = len(prices) - len(indicators)
     print(f"stop point {stop_point}")
-    if i > stop_point: # there are no longer enough price changes remaining in the price list to satisfy all signals
+    if i >= stop_point:
       break
     px_runner = i
     signal_p = 0
-    #print(f"comparing prices {prices[i:len(indicators)]} to indicators {indicators} ")
-    print(f"will check prices {prices[i:len(indicators)]} to signals {indicators}")
-    while px_runner < len(prices): # iterate over prices from here forward
+    #print(f"will check prices {prices[i:i+len(indicators)+1]} to signals {indicators}")
+    while px_runner < len(prices) and signal_p < len(indicators): # iterate over prices from here forward
       # find next px change
       change_runner = px_runner + 1 # look for next change
       while prices[px_runner] == prices[change_runner]:
         change_runner += 1
-      if change_runner > stop_point:
+      if change_runner > len(prices):
         break
       # look for match at this price change porint
-      #print(f"comparing px_runner {prices[px_runner]} to {prices[change_runner]} with ind {indicators[signal_p]} at p {signal_p} ")
-      print(f"  comparing px_runner {prices[px_runner]} to {prices[change_runner]} with at p {signal_p} ")
+      print(f"  comparing px_runner {prices[px_runner]} to {prices[change_runner]} with at p {indicators[signal_p]} ")
       match = do_match_signal(prices[px_runner], prices[change_runner], indicators[signal_p] )
-      print(f"doing px_runner {px_runner} signal {signal_p} match {match}")
+      print(f"  got match {match}")
       if match == 1: # price change matches signal so increment both px and indicator
-        px_runner += 1
+        px_runner = change_runner
         signal_p += 1
-        if signal_p == len(indicators):
+        if signal_p == len(indicators): # matched last indicator in signal so we are done with this price
           print(f"matched signal: do position change")
-          sig_match = True
-        #continue
+          sig_match = change_runner
       elif match == 0: # px was unchanged so only increment price runner
         px_runner += 1
         continue
       else:
-        sig_match = False
+        sig_match = -1
         break
-      print(f"have indicator idx {signal_p}")
-      if signal_p == len(indicators): # we;ve gone over every indicator in the list
-        break
-    if sig_match:
-      print(f"adding pos px_runner {px_runner} direction {direction}")
-      positions[px_runner] += direction
+    if sig_match > 0 :
+      print(f"adding pos px_runner {sig_match} direction {direction}")
+      positions[sig_match] += direction
+      print(prices)
+      print(positions)
   print(positions)
   return positions
 
@@ -69,7 +65,7 @@ class Test(unittest.TestCase):
 #    ts = Solution()
 
 
-    self.assertEqual(solution( [51,56,56,58,60,59,54,57,52,48], [1,1], [-1,-1,1]), [0,0,0,1,0,0,0,0,0,0])
+    self.assertEqual(solution( [51,56,56,58,60,59,54,57,52,48], [1,1], [-1,-1,1]), [0,0,0,1,2,0,0,-1,0,0])
     #self.assertEqual(solution( [51,56,56,58], [1,1], [-1,-1,1]), [0,0,0,1])
 
 if __name__ == '__main__':
