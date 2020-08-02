@@ -17,19 +17,23 @@ Premium service adds enhanced searching and filtering of problems.
 
 - Hackerrank http://hackerrank.com/
 
-- CodeChef
+Free service has many problems and some structured areas focused on certain areas, e.g. specific languages.
 
-- CodeForces
+- CodeChef https://www.codechef.com/
+
+- CodeForces https://codeforces.com/
+
+Wide set of coding problems targeted at competitive programming circles. Start with the easier problems and move up.
 
 - InterviewCake
 
 The service is structured as a full course of the algorithms and data structures you need for the interview. The pay service provides additional structure to the learning and practice sessions
 
-- Pramp
+- Pramp https://www.pramp.com/
 
 Free Service allowing interview practice in a timed setting. You are paired up with another participant and alternate 45 minutes interview sesssions. I strongly recommend this service for getting used to the timing of the interview and communication with your interview partner.
 
-- AlgoExpert
+- AlgoExpert https://www.algoexpert.io/product
 
 This is a pay service with structured learning and practice sessions. The head of this service is very active on youtube: https://www.youtube.com/channel/UCaO6VoaYJv4kS-TQO_M-N_g
 
