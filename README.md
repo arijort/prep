@@ -9,9 +9,9 @@ Standord Course, Coursera
 
 ## Algorithm Practice
 
-- Leetcode http;//leetcode.com/
+- Leetcode http://leetcode.com/
 
-Start with easy problems then move to medium when comfortable.
+Start with easy problems then move to medium when comfortable. There are a large number of problems and a very active community for discussions around specific problems and interviews at the tech companies.
 
 Premium service adds enhanced searching and filtering of problems.
 
@@ -53,3 +53,16 @@ Ensure familiarity with these import concepts:
 ### When and how to use load-balancers
 ### Caches
 ### How to separate read traffic
+
+- Anatomy of a System Design Interview https://hackernoon.com/anatomy-of-a-system-design-interview-4cb57d75a53f
+
+Nicely structured article on how to prep for this interview.
+
+Note that these interviews are highly formulaic and your industry experience is very valuable as long as you fit it into this structure.
+
+Overall, communication ability is a key trait to show. Go broad at first and communicate possibilities on where to dive in.
+
+- Grokking the System Design Interview https://www.educative.io/courses/grokking-the-system-design-interview
+
+
+For pay service run by the author of the article above.
