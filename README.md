@@ -4,14 +4,16 @@
 
 MIT course
 
-Standord Course, Coursera
+Stanford Course, Coursera
 
 
 ## Algorithm Practice
 
 - Leetcode http://leetcode.com/
 
-Start with easy problems then move to medium when comfortable. There are a large number of problems and a very active community for discussions around specific problems and interviews at the tech companies.
+There are a large number of problems and a very active community for discussions around specific problems and interviews at the tech companies.
+
+Start with easy problems then move to medium when comfortable. 
 
 Premium service adds enhanced searching and filtering of problems.
 
@@ -38,6 +40,7 @@ Free Service allowing interview practice in a timed setting. You are paired up w
 This is a pay service with structured learning and practice sessions. The head of this service is very active on youtube: https://www.youtube.com/channel/UCaO6VoaYJv4kS-TQO_M-N_g
 
 
+
 ## System Design
 
 Donne Martin system design primer:
@@ -62,7 +65,17 @@ Note that these interviews are highly formulaic and your industry experience is 
 
 Overall, communication ability is a key trait to show. Go broad at first and communicate possibilities on where to dive in.
 
+Related links: 
+  1. https://hackernoon.com/top-10-system-design-interview-questions-for-software-engineers-8561290f0444
+  2. https://hackernoon.com/how-not-to-design-netflix-in-your-45-minute-system-design-interview-64953391a054
+
 - Grokking the System Design Interview https://www.educative.io/courses/grokking-the-system-design-interview
 
 
 For pay service run by the author of the article above.
+
+## Other linlks for Learning
+
+[Big O cheatsheet](https://www.bigocheatsheet.com/)
+
+[First person account of how to prepare for the tech interview](https://www.quora.com/How-should-I-prepare-for-a-production-engineer-interview-at-Facebook)
