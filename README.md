@@ -2,9 +2,11 @@
 
 ## Algorithm Learning:
 
-MIT course
+[MIT course](https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-006-introduction-to-algorithms-fall-2011/index.htm)
 
-Stanford Course, Coursera
+[Stanford Course, Coursera](https://www.coursera.org/specializations/algorithms)
+
+Both courses are very well structured. If you learn well from videos definitely dig into these.
 
 
 ## Algorithm Practice
@@ -39,6 +41,9 @@ Free Service allowing interview practice in a timed setting. You are paired up w
 
 This is a pay service with structured learning and practice sessions. The head of this service is very active on youtube: https://www.youtube.com/channel/UCaO6VoaYJv4kS-TQO_M-N_g
 
+- Interviewing.io https://interviewing.io/
+
+This is a pay service for practice with interview problems but I never investigated it.
 
 
 ## System Design
@@ -74,8 +79,15 @@ Related links:
 
 For pay service run by the author of the article above.
 
-## Other linlks for Learning
+## Other links for Learning
 
 [Big O cheatsheet](https://www.bigocheatsheet.com/)
 
 [First person account of how to prepare for the tech interview](https://www.quora.com/How-should-I-prepare-for-a-production-engineer-interview-at-Facebook)
+
+[Quora account of interviewing guidance](https://www.quora.com/I-was-recently-interviewed-at-Google-and-got-rejected-on-the-last-interview-even-though-I-solved-the-problem-right-Why/answer/Sief-Khafagi)
+
+[High Scalability](http://highscalability.com/) for blogs and articles
+
+http://highscalability.com/google-architecture
+http://highscalability.com/blog/category/facebook
