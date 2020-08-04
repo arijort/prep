@@ -66,7 +66,9 @@ This is a pay service for practice with interview problems but I never investiga
 
 ## System Design
 
-Donne Martin system design primer:
+The system design interview starts with a question about how to design a system to solve a certain problem. You have to guide the interviewer through the processes of clarifiying specifictions, understanding capacity requirements, proposing an initial design, discussing tradeoffs, then diving deep into certain technical areas.
+
+### Donne Martin system design primer:
 
 https://github.com/donnemartin/system-design-primer
 
@@ -80,7 +82,7 @@ Ensure familiarity with these import concepts:
 - Caches
 - How and why to separate read traffic from write
 
-- Anatomy of a System Design Interview https://hackernoon.com/anatomy-of-a-system-design-interview-4cb57d75a53f
+### Anatomy of a System Design Interview https://hackernoon.com/anatomy-of-a-system-design-interview-4cb57d75a53f
 
 Nicely structured article on how to prep for this interview.
 
@@ -97,7 +99,7 @@ Related links:
 
 For pay service run by the author of the article above.
 
-- Google guidance on the system design interview
+++ Google guidance on the system design interview
 
 https://www.youtube.com/watch?v=Gg318hR5JY0
 
