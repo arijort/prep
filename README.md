@@ -26,7 +26,7 @@ Make sure to be very familiar with these concepts and be able to discuss them, w
    Note for DFS and BFS: Recognize when it's the appropriate choice. Useful for tree and graph problems.  Note some problems might not look like a BFS/DFS problem but can be transformed into one to enable a solution.
 11. Get comfortable with creating a custom data structure e.g. an array of prefix sums, suffix tree, pairs/tuples. Be prepared to explained why and how you use this data structure.
 
-- Leetcode http://leetcode.com/
+- [Leetcode](http://leetcode.com/)
 
 There are a large number of problems and a very active community for discussions around specific problems and interviews at the tech companies.
 
@@ -74,11 +74,11 @@ Use the flash cards if that learning style works for you.
 
 Ensure familiarity with these import concepts:
 
-### CAP theorem
-### How to reason about the choice betweeen SQL and noSQL databases
-### When and how to use load-balancers
-### Caches
-### How to separate read traffic
+- CAP theorem
+- How to reason about the choice betweeen SQL and noSQL databases
+- When and how to use load-balancers
+- Caches
+- How and why to separate read traffic from write
 
 - Anatomy of a System Design Interview https://hackernoon.com/anatomy-of-a-system-design-interview-4cb57d75a53f
 
