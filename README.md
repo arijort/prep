@@ -82,7 +82,7 @@ Ensure familiarity with these import concepts:
 - Caches
 - How and why to separate read traffic from write
 
-### Anatomy of a System Design Interview https://hackernoon.com/anatomy-of-a-system-design-interview-4cb57d75a53f
+### [Anatomy of a System Design Interview](https://hackernoon.com/anatomy-of-a-system-design-interview-4cb57d75a53f)
 
 Nicely structured article on how to prep for this interview.
 
@@ -99,7 +99,7 @@ Related links:
 
 For pay service run by the author of the article above.
 
-++ Google guidance on the system design interview
+### Google guidance on the system design interview
 
 https://www.youtube.com/watch?v=Gg318hR5JY0
 
