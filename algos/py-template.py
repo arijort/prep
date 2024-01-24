@@ -14,6 +14,7 @@ class Test(unittest.TestCase):
 
     [ self.assertTrue( ts.isPalindrome(i) ) for i in trues ]
     [ self.assertFalse( ts.isPalindrome(i) ) for i in falses ]
+    self.assertEqual(ts.foo(0), 0)
     self.assertTrue(True)
     pass
 
