@@ -1,0 +1,37 @@
+Data Structures and Alogs notes:
+
+Sorting
+  * bubbble sort
+  * merge sort
+  * quicksort
+  * counting sort
+
+Arrays
+
+Hash Tables
+
+Tree
+  * DFS using recursion
+  * DFS using iteraitve approach: with stack
+
+  * BFS using queue
+
+  * pre-order traversal : root, left, right
+  * in-order traversal  : left, root, right
+  * post-order traversal: left, right, root
+
+Heap:
+  * min heap has minimum element at root 
+  * max heap has maximum element at root 
+
+Priority Queue
+
+  * Heap sort
+  * Uses Heap as complete binary tree
+  * Array with invariant property a[n] <= a[2n+1] and a[n] <= a[2n+2]
+
+Dynamic Programming
+
+Graphs
+
+  * shortest path BFS
